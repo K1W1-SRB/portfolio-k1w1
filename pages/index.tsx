@@ -1,4 +1,4 @@
-import type { GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/Header";
@@ -36,7 +36,6 @@ export default function Home({
         <title>k1w1 portfolio-2.0</title>
       </Head>
       <Header socials={socials} />
-      7o
       <section id="hero" className="snap-center">
         <Hero />
       </section>
@@ -70,8 +69,8 @@ export default function Home({
   );
 }
 
-export const GetStaticProps: GetStaticProps<Props> = async () => {
-  const pageInfo: PageInfo[] = await fetchPageInfo();
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperience();
   const skills: Skill[] = await fetchSkills();
   const socials: Social[] = await fetchSocials();

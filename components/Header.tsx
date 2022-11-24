@@ -7,6 +7,7 @@ type Props = {
   socials: Social[];
 };
 
+
 export default function Header({ socials }: Props) {
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
@@ -26,8 +27,10 @@ export default function Header({ socials }: Props) {
         }}
         className="flex flex-row items-center"
       >
-        ;
       </motion.div>
+      {socials.map( (Social) => {
+        <SocialIcon key={Social._id} bgColor="transparent" fgColor="grey" url={Social.url} />
+      })}
 
       <Link href="#contact">
         <motion.div
