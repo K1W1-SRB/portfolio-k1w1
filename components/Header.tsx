@@ -3,12 +3,13 @@ import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Social } from "../typing";
+
 type Props = {
   socials: Social[];
 };
 
-
 export default function Header({ socials }: Props) {
+  console.log(socials);
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
       <motion.div
@@ -27,11 +28,14 @@ export default function Header({ socials }: Props) {
         }}
         className="flex flex-row items-center"
       >
+        {/* {socials.map((social) => {
+          <SocialIcon
+          key={social._id}
+          url={social.url}
+          fgColor="gray"
+          bgColor="transparent"
+        })} */}
       </motion.div>
-      {socials.map( (Social) => {
-        <SocialIcon key={Social._id} bgColor="transparent" fgColor="grey" url={Social.url} />
-      })}
-
       <Link href="#contact">
         <motion.div
           initial={{

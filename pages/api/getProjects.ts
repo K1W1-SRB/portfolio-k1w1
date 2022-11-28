@@ -4,7 +4,7 @@ import { sanityClient } from "../../sanity";
 import { Project, Skill, Social } from "../../typing";
 
 const query = groq`
-    *[_type == "project"] {
+    *[_type == "projects"] {
       ...,
       technologies[]->
     }
