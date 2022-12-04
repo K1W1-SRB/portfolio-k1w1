@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import WorkExperience from "../components/WorkExperience";
 import Skills from "../components/Skills";
-import Projects from "../components/Project";
+import Projects from "../components/Projects";
 import ContactMe from "../components/ContactMe";
 import { Experience, PageInfo, Project, Skill, Social } from "../typing";
 import { fetchPageInfo } from "../utils/fetchPageInfo";
@@ -49,7 +49,7 @@ export default function Home({
         <Skills />
       </section>
       <section id="Projects" className="snap-center">
-        <Projects />
+        <Projects projects={projects} />
       </section>
       <section id="contacts" className="snap-center">
         <ContactMe pageInfo={pageInfo}/>

@@ -1,9 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Project } from "../typing";
+import { urlFor } from "../sanity";
 
-type Props = {};
-const projects = [1, 2, 3];
-export default function Project({}: Props) {
+
+type Props = {
+  projects: Project[]
+};
+
+export default function projects({ projects }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,7 +33,8 @@ export default function Project({}: Props) {
               transition={{ duration: 1.2 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              src="https://picsum.photos/300/250"
+              className="max-h-64"
+              src={urlFor(project.Image).url()}
               alt=""
             />
 
@@ -37,15 +43,19 @@ export default function Project({}: Props) {
                 <span className="underline decoration-[#3baf3c]/50">
                   Case study {i + 1} of {projects.length}{" "}
                 </span>{" "}
-                : ups clone
+                {project.title}
               </h4>
 
+              <div className="flex items-center space-x-2 justify-center">
+                {project.technologies.map((Technology) => {
+                  return <img className="w-10 h-10 " src={urlFor(Technology.Image).url()} />
+                })}
+              </div>
+
               <p className="text-lg text-center md:text-left">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                {project.summary}
               </p>
+              <a href={project.linkToBuild}>Link to build</a>
             </div>
           </div>
         ))}
