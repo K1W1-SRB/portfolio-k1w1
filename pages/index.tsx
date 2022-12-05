@@ -46,7 +46,7 @@ export default function Home({
         <WorkExperience experience={experiences}/>
       </section>
       <section id="Skills" className="snap-center">
-        <Skills />
+        <Skills skills={skills} />
       </section>
       <section id="Projects" className="snap-center">
         <Projects projects={projects} />

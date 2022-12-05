@@ -1,11 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Skill } from "../typing";
+import { urlFor } from "../sanity";
 
 type Props = {
   directionleft?: boolean;
+  Skill: Skill;
 };
 
-export default function Skill({ directionleft }: Props) {
+export default function Skillcard({ Skill, directionleft }: Props) {
   return (
     <div className="group relative flex cursor-pointer">
       <motion.img
@@ -14,13 +17,13 @@ export default function Skill({ directionleft }: Props) {
           opacity: 0,
         }}
         transition={{ duration: 1 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        src="logo.png"
-        className="rounded-full border border-gray-500 object-cover w-24 h-24 xl:w-32 xl:h-32 filter group-hover:grayscale transition duration-300 ease-in-out"
+        whileInView={{ opacity: 1, x: 0 }}  
+        src={urlFor(Skill.Image).url()}
+        className="rounded-full border border-gray-500 object-cover w-20 h-20 xl:w-32 xl:h-32 filter group-hover:grayscale transition duration-300 ease-in-out"
       />
       <div className="absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white h-24 w-24 md:w-28 xl:w-32 xl:h-32 rounded-full z-0 ">
         <div className="flex items-center justify-center h-full">
-          <p className="text-3xl font-bold text-black opacity-100">100%</p>
+          <p className="text-3xl font-bold text-black opacity-100">{Skill.progress}%</p>
         </div>
       </div>
     </div>
