@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -57,7 +58,7 @@ export default function Home({
       <Link href="#hero">
         <footer className="sticky bottom-5 w-full cursor-pointer">
           <div className="flex items-center justify-center">
-            <img
+            <Image
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
               src="k1w1 logo illustator.svg"
               alt=""

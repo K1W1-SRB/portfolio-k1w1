@@ -20,6 +20,7 @@ export default function ExperienceCard({experience}: Props) {
         viewport={{ once: true }}
         className="w-32 h-32 rounded-full xl:w-[100px] xl:h-[100px] object-cover object-center"
         src={urlFor(experience.companyImage).url()}
+        key={experience._id}
         alt=""
       />
 
@@ -28,7 +29,7 @@ export default function ExperienceCard({experience}: Props) {
         <p className="font-bold text-2xl mt-1">{experience.company}</p>
         <div className="flex space-x-2 my-2 ">
           {experience.technologies.map((technology) => {
-            return <img className="w-10 h-10 rounded-full" src={urlFor(technology.Image).url()} />
+            return <img key={technology._id} className="w-10 h-10 rounded-full" src={urlFor(technology.Image).url()} />
           })}
         </div>
         <p className="uppercase py-5 text-gray-300 ">
