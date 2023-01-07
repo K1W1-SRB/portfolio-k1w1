@@ -22,7 +22,7 @@ export default function projects({ projects }: Props) {
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl lg:top-12">
         Projects
       </h3>
-
+  
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#3baf3c]/80">
         {projects.map((project, i) => (
           <div key={project._id} className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
@@ -50,7 +50,7 @@ export default function projects({ projects }: Props) {
 
               <div className="flex items-center space-x-2 justify-center">
                 {project.technologies.map((Technology) => {
-                  return <Image key={Technology._id} className="w-10 h-10 " alt="image of technologies" src={urlFor(Technology.Image).url()} />
+                  return <Image key={Technology._id} width={40} height={40} className="w-10 h-10 " alt="image of technologies" src={urlFor(Technology.Image).url()} />
                 })}
               </div>
 

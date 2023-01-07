@@ -40,7 +40,7 @@ export default function ExperienceCard({experience}: Props) {
         </p>
 
         <ul className="list-disc space-y-4 ml-5 text-lg max-h-96 overflow-y-scroll scrollbar-thin scrollbar-track-black scroll-bar-thumb-[#3baf3c]/80">
-          {experience.points.map((point, i) => {
+          {experience.points.map((point: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined, i: React.Key | null | undefined) => {
             return <li key={i}>{point}</li>
           })}
         </ul>

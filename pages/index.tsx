@@ -61,6 +61,8 @@ export default function Home({
             <Image
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
               src="k1w1 logo illustator.svg"
+              width={40}
+              height={40}
               alt=""
             />
           </div>
