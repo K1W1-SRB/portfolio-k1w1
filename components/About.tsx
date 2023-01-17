@@ -38,7 +38,7 @@ export default function About({pageInfo}: Props) {
           Background
         </h4>
         <p className="text-base">
-          {pageInfo.backgroundInformation}
+          {pageInfo?.backgroundInformation}
         </p>
       </div>
     </motion.div>

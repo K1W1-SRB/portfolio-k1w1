@@ -1,4 +1,3 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -60,7 +59,7 @@ export default function Home({
           <div className="flex items-center justify-center">
             <Image
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
-              src="k1w1 logo illustator.svg"
+              src="/k1w1 logo illustator.svg"
               width={40}
               height={40}
               alt=""
@@ -72,7 +71,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export async function getServerSideProps() {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperience();
   const skills: Skill[] = await fetchSkills();
@@ -86,8 +85,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       skills,
       socials,
       projects,
+      fallback: false,
     },
 
-    revalidate: 10,
-  };
+}  
 };

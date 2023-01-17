@@ -24,8 +24,8 @@ export default function projects({ projects }: Props) {
       </h3>
   
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#3baf3c]/80">
-        {projects.map((project, i) => (
-          <div key={project._id} className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+        {projects?.map((project, i) => (
+          <div key={project?._id} className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
             <motion.img
               initial={{
                 y: -300,
@@ -35,29 +35,29 @@ export default function projects({ projects }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="max-h-64"
-              key={project._id}
-              src={urlFor(project.Image).url()}
+              key={project?._id}
+              src={urlFor(project?.Image).url()}
               alt=""
             />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
                 <span className="underline decoration-[#3baf3c]/50">
-                  Case study {i + 1} of {projects.length}{" "}
+                  Case study {i + 1} of {projects?.length}{" "}
                 </span>{" "}
-                {project.title}
+                {project?.title}
               </h4>
 
               <div className="flex items-center space-x-2 justify-center">
                 {project.technologies.map((Technology) => {
-                  return <Image key={Technology._id} width={40} height={40} className="w-10 h-10 " alt="image of technologies" src={urlFor(Technology.Image).url()} />
+                  return <Image key={Technology?._id} width={40} height={40} className="w-10 h-10 " alt="image of technologies" src={urlFor(Technology?.Image).url()} />
                 })}
               </div>
 
               <p className="text-lg text-center md:text-left">
-                {project.summary}
+                {project?.summary}
               </p>
-              <a href={project.linkToBuild}>Link to build</a>
+              <a href={project?.linkToBuild}>Link to build</a>
             </div>
           </div>
         ))}

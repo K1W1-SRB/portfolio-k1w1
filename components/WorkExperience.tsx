@@ -21,7 +21,7 @@ export default function WorkExperience({experience}: Props) {
 
       <div className="w-full mt-10 flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#3baf3c]/80 lg:max-h-[600px]">
         {experience?.map(experience => {
-          return <ExperienceCard key={experience._id} experience={experience} />
+          return <ExperienceCard key={experience?._id} experience={experience} />
         })}
       </div>
     </motion.div>
