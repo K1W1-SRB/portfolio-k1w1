@@ -54,10 +54,10 @@ export default function projects({ projects }: Props) {
                 })}
               </div>
 
-              <p className="text-lg text-center md:text-left">
+              <p className="text-lg text-center ">
                 {project?.summary}
               </p>
-              <a href={project?.linkToBuild}>Link to build</a>
+              <a className="underline flex  justify-center  text-[#3baf3c] decoration-[#3baf3c]/50" href={project?.linkToBuild}>Link to build</a>
             </div>
           </div>
         ))}
