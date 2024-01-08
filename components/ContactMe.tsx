@@ -1,6 +1,7 @@
 import React from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
 import { PageInfo } from "../typing";
 
 type Props = {
@@ -12,6 +13,7 @@ type Inputs = {
   email: string;
   subject: string;
   message: string;
+  recaptcha: string;
 };
 
 export default function ContactMe({ pageInfo }: Props) {
@@ -19,7 +21,17 @@ export default function ContactMe({ pageInfo }: Props) {
   // const onSubmit: SubmitHandler<Inputs> = (formData) => {
   //   window.location.href = `mailto:softwaredeveloper.k1w1@gmail,com?subject=${formData?.subject}&body=Hi, my name is ${formData?.name}, ${formData?.message} (${formData?.email})`;
   // };
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+    recaptcha: string;
+  }) => {
+    if (!formData.recaptcha) {
+      alert("Please complete the reCAPTCHA.");
+      return;
+    }
     const subject = encodeURIComponent(formData.subject || "");
     const name = encodeURIComponent(formData.name || "");
     const message = encodeURIComponent(formData.message || "");
@@ -29,15 +41,19 @@ export default function ContactMe({ pageInfo }: Props) {
     window.open(mailtoLink, "_blank");
   };
 
+  function setValue(arg0: string, value: any) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="h-screen container flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl lg:top-0 ">
+      <h3 className="absolute top-24 p-7 uppercase tracking-[20px] text-gray-500 text-2xl lg:top-0 ">
         Contact
       </h3>
 
       <div className="flex flex-col space-y-10 lg:mt-16">
         <h4 className="text-4xl font-semibold text-center">
-          I have got just what you need.{""}
+          I have got just what you need.{" "}
           <span className="decoration-[#3baf3c]/50 underline">Lets Talk.</span>
         </h4>
 
@@ -45,11 +61,6 @@ export default function ContactMe({ pageInfo }: Props) {
           <div className="flex items-center space-x-4 justify-center">
             <PhoneIcon className="text-[#3baf3c] h-7 w-7 animate-pulse" />
             <p className="text-xl md:text-2xl">{pageInfo?.phoneNumber}</p>
-          </div>
-
-          <div className="flex items-center space-x-4 justify-center ">
-            <EnvelopeIcon className="text-[#3baf3c] h-7 w-7 animate-pulse" />
-            <p className="text-xl md:text-2xl">{pageInfo?.email}</p>
           </div>
 
           <div className="flex items-center space-x-4 justify-center">
@@ -88,6 +99,11 @@ export default function ContactMe({ pageInfo }: Props) {
             {...register("message")}
             placeholder="Message"
             className="contactInput"
+          />
+          <ReCAPTCHA
+            sitekey="6LceekcpAAAAAFqlZQ5UtatLyWpNqQ8APm4WWajH"
+            onChange={(token: string | null) => setValue("recaptcha", token)}
+            className="my-4"
           />
           <button
             type="submit"
