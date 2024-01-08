@@ -25,7 +25,7 @@ export default function Hero({ pageInfo }: Props) {
     <div className="h-screen scroll-smooth flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <BackgroundCircles />
       <Image
-        width={120}
+        width={70}
         height={200}
         src={urlFor(pageInfo?.heroImage).url()}
         alt="Company Image"
