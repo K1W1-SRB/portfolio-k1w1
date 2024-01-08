@@ -1,6 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+// _app.tsx
+import { AppProps } from "next/app";
+import { ReactElement, createElement } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+type MyAppProps = AppProps & {
+  Component: React.ComponentType<AppProps>;
+};
+
+export default function App({
+  Component,
+  pageProps,
+}: MyAppProps): ReactElement {
+  return createElement(Component, pageProps);
 }

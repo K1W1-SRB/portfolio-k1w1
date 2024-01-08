@@ -4,12 +4,13 @@ import { Cursor, useTypewriter } from "react-simple-typewriter";
 import Link from "next/link";
 import { PageInfo } from "../typing";
 import { urlFor } from "../sanity";
+import Image from "next/image";
 
 type Props = {
-  pageInfo: PageInfo
+  pageInfo: PageInfo;
 };
 
-export default function Hero({pageInfo}: Props) {
+export default function Hero({ pageInfo }: Props) {
   const [text, count] = useTypewriter({
     words: [
       `Hi, its ${pageInfo?.name}`,
@@ -23,8 +24,11 @@ export default function Hero({pageInfo}: Props) {
   return (
     <div className="h-screen scroll-smooth flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <BackgroundCircles />
-      <img
+      <Image
+        width={120}
+        height={120}
         src={urlFor(pageInfo?.heroImage).url()}
+        alt="Company Image"
         className=" relative rounded-fill h-32 mx-auto object-cover"
       />
       <div className="z-20 ">
