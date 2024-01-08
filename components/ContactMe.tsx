@@ -16,9 +16,19 @@ type Inputs = {
 
 export default function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:softwaredeveloper.k1w1@gmail?subject=${formData?.subject}&body=Hi, my name is ${formData?.name}, ${formData?.message} (${formData?.email})`;
+  // const onSubmit: SubmitHandler<Inputs> = (formData) => {
+  //   window.location.href = `mailto:softwaredeveloper.k1w1@gmail,com?subject=${formData?.subject}&body=Hi, my name is ${formData?.name}, ${formData?.message} (${formData?.email})`;
+  // };
+  const onSubmit = (formData) => {
+    const subject = encodeURIComponent(formData.subject || "");
+    const name = encodeURIComponent(formData.name || "");
+    const message = encodeURIComponent(formData.message || "");
+    const email = encodeURIComponent(formData.email || "");
+
+    const mailtoLink = `mailto:softwaredeveloper.k1w1@gmail.com?subject=${subject}&body=Hi, my name is ${name}, ${message} (${email})`;
+    window.open(mailtoLink, "_blank");
   };
+
   return (
     <div className="h-screen container flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl lg:top-0 ">
