@@ -26,7 +26,7 @@ export default function Hero({ pageInfo }: Props) {
       <BackgroundCircles />
       <Image
         width={120}
-        height={120}
+        height={200}
         src={urlFor(pageInfo?.heroImage).url()}
         alt="Company Image"
         className=" relative rounded-fill h-32 mx-auto object-cover"
