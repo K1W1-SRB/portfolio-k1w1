@@ -4,10 +4,10 @@ import { PageInfo } from "../typing";
 import { urlFor } from "../sanity";
 
 type Props = {
-  pageInfo: PageInfo
+  pageInfo: PageInfo;
 };
 
-export default function About({pageInfo}: Props) {
+export default function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,7 +17,7 @@ export default function About({pageInfo}: Props) {
       }}
       className="flex flex-col mb-5 relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center scroll-smooth"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
+      <h3 className="absolute top-24 uppercase tracking-[10px] text-gray-500 text-2xl md:tracking-[20px]">
         About
       </h3>
 
@@ -27,19 +27,15 @@ export default function About({pageInfo}: Props) {
         transition={{
           duration: 1.2,
         }}
-        className="-mb-20 md:mb-0 flex-shrink-0 h-56 w-56 md:w-64 md:h-96"
+        className="-mb-24 hidden md:mb-0 flex-shrink-0 h-48 w-48 pt-2 md:w-64 md:h-96 md:inline"
         src={urlFor(pageInfo?.profilePic).url()}
       />
 
       <div className="space-y-10 px-0 md:px-10">
         <h4 className=" text-4xl font-semibold">
-          Here is a{" "}
-          <span className="underline decoration-[#3baf3c]">little</span>{" "}
-          Background
+          Here is a <span>little</span> Background
         </h4>
-        <p className="text-base">
-          {pageInfo?.backgroundInformation}
-        </p>
+        <p className="text-base">{pageInfo?.backgroundInformation}</p>
       </div>
     </motion.div>
   );
