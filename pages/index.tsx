@@ -34,7 +34,6 @@ export default function Home({
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#3baf3c]/80">
       <Head>
         <title>k1w1 portfolio-2.0</title>
-        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LceekcpAAAAAFqlZQ5UtatLyWpNqQ8APm4WWajH"></script>
       </Head>
       <Header socials={socials} />
       <section id="hero" className="snap-center">
