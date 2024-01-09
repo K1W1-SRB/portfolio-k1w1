@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -17,7 +18,8 @@ type Inputs = {
 };
 
 export default function ContactMe({ pageInfo }: Props) {
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
+  const [captcha, setCaptcha] = useState<string | null>();
   // const onSubmit: SubmitHandler<Inputs> = (formData) => {
   //   window.location.href = `mailto:softwaredeveloper.k1w1@gmail,com?subject=${formData?.subject}&body=Hi, my name is ${formData?.name}, ${formData?.message} (${formData?.email})`;
   // };
@@ -26,9 +28,9 @@ export default function ContactMe({ pageInfo }: Props) {
     email: string;
     subject: string;
     message: string;
-    recaptcha: string;
+    recaptcha: string | null;
   }) => {
-    if (!formData.recaptcha) {
+    if (!captcha) {
       alert("Please complete the reCAPTCHA.");
       return;
     }
@@ -40,10 +42,6 @@ export default function ContactMe({ pageInfo }: Props) {
     const mailtoLink = `mailto:softwaredeveloper.k1w1@gmail.com?subject=${subject}&body=Hi, my name is ${name}, ${message} (${email})`;
     window.open(mailtoLink, "_blank");
   };
-
-  function setValue(arg0: string, value: any) {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div className="h-screen container flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
@@ -71,13 +69,13 @@ export default function ContactMe({ pageInfo }: Props) {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-2 w-fit mx-auto"
+          className="flex flex-col space-y-2 w-fit mx-auto "
         >
-          <div className="flex space-x-2">
+          <div className="flex flex-col md:flex-row md:space-x-2">
             <input
               {...register("name")}
               placeholder="Name"
-              className="contactInput"
+              className="contactInput my-2 md:my-0"
               type="text"
             />
             <input
@@ -101,9 +99,9 @@ export default function ContactMe({ pageInfo }: Props) {
             className="contactInput"
           />
           <ReCAPTCHA
-            sitekey="6LceekcpAAAAAFqlZQ5UtatLyWpNqQ8APm4WWajH"
-            onChange={(token: string | null) => setValue("recaptcha", token)}
-            className="my-4"
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+            onChange={setCaptcha}
+            className="my-4 mx-auto"
           />
           <button
             type="submit"

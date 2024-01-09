@@ -34,16 +34,17 @@ export default function Home({
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#3baf3c]/80">
       <Head>
         <title>k1w1 portfolio-2.0</title>
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LceekcpAAAAAFqlZQ5UtatLyWpNqQ8APm4WWajH"></script>
       </Head>
       <Header socials={socials} />
       <section id="hero" className="snap-center">
-        <Hero pageInfo={pageInfo}/>
+        <Hero pageInfo={pageInfo} />
       </section>
       <section id="about" className="snap-center">
-        <About pageInfo={pageInfo}/>
+        <About pageInfo={pageInfo} />
       </section>
       <section id="WorkExperience" className="snap-center">
-        <WorkExperience experience={experiences}/>
+        <WorkExperience experience={experiences} />
       </section>
       <section id="Skills" className="snap-center">
         <Skills skills={skills} />
@@ -52,7 +53,7 @@ export default function Home({
         <Projects projects={projects} />
       </section>
       <section id="contacts" className="snap-center">
-        <ContactMe pageInfo={pageInfo}/>
+        <ContactMe pageInfo={pageInfo} />
       </section>
       <Link href="#hero">
         <footer className="sticky bottom-5 w-full cursor-pointer">
@@ -87,6 +88,5 @@ export async function getServerSideProps() {
       projects,
       fallback: false,
     },
-
-}  
-};
+  };
+}
