@@ -4,6 +4,7 @@ import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { PageInfo } from "../typing";
+import Mail from "../pages/api/Captcha";
 
 type Props = {
   pageInfo: PageInfo;
@@ -20,32 +21,39 @@ type Inputs = {
 export default function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit, setValue } = useForm<Inputs>();
   const [captcha, setCaptcha] = useState<string | null>();
-  // const onSubmit: SubmitHandler<Inputs> = (formData) => {
-  //   window.location.href = `mailto:softwaredeveloper.k1w1@gmail,com?subject=${formData?.subject}&body=Hi, my name is ${formData?.name}, ${formData?.message} (${formData?.email})`;
-  // };
-  const onSubmit = (formData: {
+
+  const onSubmit = async (formData: {
     name: string;
     email: string;
     subject: string;
     message: string;
     recaptcha: string | null;
   }) => {
-    if (!captcha) {
-      alert("Please complete the reCAPTCHA.");
-      return;
+    try {
+      if (!formData.recaptcha) {
+        alert("Please complete the reCAPTCHA.");
+        return;
+      }
+      const response = await fetch("/api/Captcha", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-    const subject = encodeURIComponent(formData.subject || "");
-    const name = encodeURIComponent(formData.name || "");
-    const message = encodeURIComponent(formData.message || "");
-    const email = encodeURIComponent(formData.email || "");
-
-    const mailtoLink = `mailto:softwaredeveloper.k1w1@gmail.com?subject=${subject}&body=Hi, my name is ${name}, ${message} (${email})`;
-    window.open(mailtoLink, "_blank");
   };
 
   return (
     <div className="h-screen container flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
-      <h3 className="absolute top-24 p-7 uppercase tracking-[20px] text-gray-500 text-2xl lg:top-0 ">
+      <h3 className="hidden md:inline-block absolute top-10 p-7 uppercase tracking-[20px] text-gray-500 text-2xl md:top-28 before:lg:top-0 ">
         Contact
       </h3>
 
@@ -100,7 +108,7 @@ export default function ContactMe({ pageInfo }: Props) {
           />
           <ReCAPTCHA
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-            onChange={setCaptcha}
+            onChange={(token) => setValue("recaptcha", token)}
             className="my-4 mx-auto"
           />
           <button
