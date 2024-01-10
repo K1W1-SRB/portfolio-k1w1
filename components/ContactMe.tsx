@@ -108,7 +108,7 @@ export default function ContactMe({ pageInfo }: Props) {
           />
           <ReCAPTCHA
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-            onChange={(token) => setValue("recaptcha", token)}
+            onChange={(token) => token && setValue("recaptcha", token)}
             className="my-4 mx-auto"
           />
           <button

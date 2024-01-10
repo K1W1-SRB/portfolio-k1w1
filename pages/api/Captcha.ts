@@ -1,6 +1,12 @@
 import mail from "@sendgrid/mail";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+if (!process.env.SENDGRID_API_KEY) {
+  throw new Error(
+    "SENDGRID_API_KEY is not defined in the environment variables."
+  );
+}
+
 mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function Mail(req: NextApiRequest, res: NextApiResponse) {
